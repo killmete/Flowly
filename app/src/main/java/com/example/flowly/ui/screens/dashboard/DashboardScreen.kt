@@ -20,7 +20,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountBalanceWallet
-import androidx.compose.material.icons.rounded.TrendingUp
+import androidx.compose.material.icons.automirrored.rounded.TrendingUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -216,7 +216,7 @@ fun DashboardScreen(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Icon(
-                            imageVector = Icons.Rounded.TrendingUp,
+                            imageVector = Icons.AutoMirrored.Rounded.TrendingUp,
                             contentDescription = null,
                             tint = PrimaryPurple,
                             modifier = Modifier.size(20.dp)

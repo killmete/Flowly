@@ -41,6 +41,7 @@ fun SpendingChart(
     var animProgress by remember { mutableFloatStateOf(0f) }
     LaunchedEffect(dataPoints) {
         animProgress = 0f
+        kotlinx.coroutines.yield()
         animProgress = 1f
     }
     val animatedProgress by animateFloatAsState(

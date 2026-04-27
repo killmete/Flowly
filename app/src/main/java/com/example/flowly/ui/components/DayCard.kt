@@ -92,8 +92,10 @@ fun DayCard(
                 color = if (totalSpent > 0) statusColor else TextMuted,
                 textAlign = TextAlign.Center
             )
+            val absEnd = kotlin.math.abs(predictedEnd)
+            val sign = if (predictedEnd < 0) "-" else ""
             Text(
-                text = "$${formatter.format(predictedEnd)}",
+                text = "$sign$${formatter.format(absEnd)}",
                 style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
                 color = statusColor,
                 textAlign = TextAlign.Center

@@ -43,7 +43,9 @@ fun FlowlyTheme(content: @Composable () -> Unit) {
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
+            @Suppress("DEPRECATION")
             window.statusBarColor = DarkBackground.toArgb()
+            @Suppress("DEPRECATION")
             window.navigationBarColor = DarkBackground.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
             WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = false

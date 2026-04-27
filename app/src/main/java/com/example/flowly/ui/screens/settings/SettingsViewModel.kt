@@ -87,7 +87,15 @@ class SettingsViewModel(private val repository: FlowlyRepository) : ViewModel() 
 
     private fun filterNumericInput(value: String): String {
         val filtered = value.filter { it.isDigit() || it == '.' }
-        return if (filtered.count { it == '.' } <= 1) filtered else value
+        // If there are multiple dots, keep only up to the first dot section
+        val dotIndex = filtered.indexOf('.')
+        return if (dotIndex >= 0) {
+            val beforeDot = filtered.substring(0, dotIndex)
+            val afterDot = filtered.substring(dotIndex + 1).replace(".", "")
+            "$beforeDot.$afterDot"
+        } else {
+            filtered
+        }
     }
 
     private fun recalculate() {

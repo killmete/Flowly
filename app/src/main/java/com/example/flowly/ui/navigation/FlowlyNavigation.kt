@@ -88,8 +88,8 @@ fun FlowlyNavigation() {
                 containerColor = DarkSurface,
                 tonalElevation = 0.dp,
                 modifier = Modifier
+                    .shadow(elevation = 16.dp, shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
                     .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
-                    .shadow(elevation = 16.dp)
             ) {
                 bottomNavItems.forEach { screen ->
                     val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true

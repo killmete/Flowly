@@ -278,30 +278,34 @@ fun AddExpenseScreen(
                     visible = visible,
                     enter = fadeIn() + slideInVertically { 110 }
                 ) {
-                    OutlinedTextField(
-                        value = DateUtils.formatDateForDisplay(state.date),
-                        onValueChange = { },
-                        label = { Text("Date") },
-                        readOnly = true,
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { showDatePicker = true },
-                        enabled = false,
-                        shape = RoundedCornerShape(16.dp),
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Rounded.CalendarMonth,
-                                contentDescription = "Select date",
-                                tint = PrimaryPurple
+                            .clickable { showDatePicker = true }
+                    ) {
+                        OutlinedTextField(
+                            value = DateUtils.formatDateForDisplay(state.date),
+                            onValueChange = { },
+                            label = { Text("Date") },
+                            readOnly = true,
+                            modifier = Modifier.fillMaxWidth(),
+                            enabled = false,
+                            shape = RoundedCornerShape(16.dp),
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = Icons.Rounded.CalendarMonth,
+                                    contentDescription = "Select date",
+                                    tint = PrimaryPurple
+                                )
+                            },
+                            colors = OutlinedTextFieldDefaults.colors(
+                                disabledBorderColor = TextMuted,
+                                disabledTextColor = MaterialTheme.colorScheme.onSurface,
+                                disabledLabelColor = TextSecondary,
+                                disabledLeadingIconColor = PrimaryPurple
                             )
-                        },
-                        colors = OutlinedTextFieldDefaults.colors(
-                            disabledBorderColor = TextMuted,
-                            disabledTextColor = MaterialTheme.colorScheme.onSurface,
-                            disabledLabelColor = TextSecondary,
-                            disabledLeadingIconColor = PrimaryPurple
                         )
-                    )
+                    }
                 }
             }
 
@@ -372,6 +376,7 @@ fun AddExpenseScreen(
                     TextButton(onClick = {
                         datePickerState.selectedDateMillis?.let { millis ->
                             val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+                            sdf.timeZone = java.util.TimeZone.getTimeZone("UTC")
                             viewModel.updateDate(sdf.format(Date(millis)))
                         }
                         showDatePicker = false
